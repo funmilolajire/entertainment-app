@@ -1,0 +1,35 @@
+@use "config" as *;
+
+.searchbar {
+  margin-bottom: 1.9rem;
+  padding-right: 3.6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2.4rem;
+  padding-top: 6.4rem;
+  background: $color-dblue;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  button {
+    flex-shrink: 0;
+    height: 3.2rem;
+  }
+  input {
+    flex-shrink: 0;
+    flex-grow: 1;
+    caret-color: $color-red;
+    padding-bottom: 1.5rem;
+    color: $color-white;
+    border-bottom: 1px solid transparent;
+    @extend %t-heading-m;
+    &::placeholder {
+      opacity: 0.4979;
+    }
+    &:focus,
+    &:focus-within {
+      outline: 0;
+      border-bottom: 1px solid $color-gblue;
+    }
+  }
+}

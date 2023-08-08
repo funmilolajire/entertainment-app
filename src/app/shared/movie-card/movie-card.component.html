@@ -1,1 +1,46 @@
-<p>movie-card works!</p>
+<div class="movie-card" [ngClass]="{ trending: mode === 'trending' }">
+  <section class="info">
+    <p>
+      <span>{{ movie.year }}</span>
+      <span class="movie" *ngIf="movie.category === 'Movie'"
+        ><category-movie-icon class="icon"></category-movie-icon> Movie</span
+      >
+      <span class="series" *ngIf="movie.category !== 'Movie'"
+        ><category-tv-icon class="icon"></category-tv-icon> TV Series</span
+      >
+      <span>{{ movie.rating }}</span>
+    </p>
+    <h3 class="title">{{ movie.title }}</h3>
+  </section>
+  <picture class="thumbnail">
+    <img
+      [src]="
+        mode === 'trending'
+          ? movie.thumbnail.trending.large
+          : movie.thumbnail.regular.large
+      "
+      alt="movie thumbnail"
+    />
+    <button
+      type="button"
+      aria-label="bookmark"
+      class="bookmark"
+      [ngClass]="{ bookmarked: movie.isBookmarked }"
+      (click)="bookmarkControl(movie.id)"
+    >
+      <bookmark-empty-icon
+        class="icon"
+        *ngIf="!movie.isBookmarked"
+      ></bookmark-empty-icon
+      ><bookmark-full-icon
+        class="icon"
+        *ngIf="movie.isBookmarked"
+      ></bookmark-full-icon>
+    </button>
+    <div class="play">
+      <button type="button" aria-label="play" class="play-button">
+        <play-icon class="icon"></play-icon> <span>Play</span>
+      </button>
+    </div>
+  </picture>
+</div>

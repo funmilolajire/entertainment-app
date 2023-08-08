@@ -1,0 +1,9 @@
+.container {
+  padding-right: 3.6rem;
+  .series {
+    margin-top: 3.8rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+    gap: 3.2rem 4rem;
+  }
+}

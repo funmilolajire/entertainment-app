@@ -1,0 +1,13 @@
+<section class="search-results" *ngIf="!!searchTerm">
+  <app-content-heading
+    [heading]="
+      'Found ' + searchResults.length + ' results for ' + '‘' + searchTerm + '’'
+    "
+  ></app-content-heading>
+  <div class="movies">
+    <app-movie-card
+      *ngFor="let data of searchResults"
+      [movie]="data"
+    ></app-movie-card>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+.trending {
+  margin-bottom: 4rem;
+  padding-right: 3.6rem;
+  position: relative;
+  .movies {
+    margin-top: 2.5rem;
+    position: relative;
+    display: inline-grid;
+    // width: 100%;
+    overflow: auto;
+    .slider {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 4rem;
+    }
+  }
+}
+
+.recommended {
+  padding-right: 3.6rem;
+  .movies {
+    margin-top: 3.2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+    gap: 3.2rem 4rem;
+  }
+}

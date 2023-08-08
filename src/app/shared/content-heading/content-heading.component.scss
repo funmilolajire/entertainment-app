@@ -1,0 +1,6 @@
+@use "config" as *;
+
+.heading {
+  color: $color-white;
+  @extend %t-heading-l;
+}

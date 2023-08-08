@@ -1,0 +1,154 @@
+@use "config" as *;
+
+.movie-card {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  .thumbnail {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      border-radius: 8px;
+      height: auto;
+    }
+    &:hover {
+      .play {
+        transform: translateY(0);
+        transition: transform 0.2s linear;
+      }
+    }
+  }
+
+  .bookmark {
+    position: absolute;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 32px;
+    background: transparentize($color: $color-dblue, $amount: 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 1.6rem;
+    right: 1.6rem;
+    transition: 0.2s background linear, 0.2s color linear;
+    color: $color-white;
+    z-index: 2;
+    &:hover {
+      transition: 0.2s background linear, 0.2s color linear;
+      background: $color-white;
+      color: $color-dblue;
+    }
+    &.bookmarked {
+      &:hover {
+        background: $color-gblue;
+      }
+    }
+  }
+  .play {
+    position: absolute;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    z-index: 1;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(100%);
+    transition: transform 0.2s linear;
+
+    .play-button {
+      width: 11.7rem;
+      height: 4.8rem;
+      padding: 9px;
+      gap: 1.9rem;
+      display: flex;
+      align-items: center;
+      border-radius: 28.5px;
+      background: transparentize($color: $color-white, $amount: 0.75);
+      span {
+        @extend %t-heading-xs;
+      }
+    }
+  }
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .info {
+    width: 100%;
+    margin-top: 0.8rem;
+    p {
+      margin-bottom: 0.5rem;
+      opacity: 0.75;
+      display: flex;
+      gap: 1.9rem;
+      @extend %t-body-s;
+      span {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        &:not(:last-child)::before {
+          position: absolute;
+          content: "";
+          background: transparentize($color: $color-white, $amount: 0.5);
+          height: 3px;
+          width: 3px;
+          border-radius: 100%;
+          right: -11px;
+        }
+      }
+    }
+    .title {
+      @extend %t-heading-xs;
+    }
+  }
+}
+
+.movie-card {
+  &.trending {
+    width: 47rem;
+    position: relative;
+    .info {
+      margin-top: 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      height: 10rem;
+      padding: 2.4rem;
+      border-radius: 0px 0px 8px 8px;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.75) 100%
+      );
+      p {
+        margin-bottom: 0.3rem;
+        @extend %t-body-m;
+      }
+      .title {
+        @extend %t-heading-s;
+      }
+      &:hover {
+        & ~ .thumbnail {
+          .play {
+            transform: translateY(0);
+            transition: transform 0.2s linear;
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,20 +2,20 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavItemComponent } from './nav-item/nav-item.component';
-import { NavHomeComponent } from 'src/app/shared/icons/nav-home';
-import { NavMoviesComponent } from 'src/app/shared/icons/nav-movies';
-import { NavTvSeriesComponent } from 'src/app/shared/icons/nav-tv-series';
-import { NavBookMarksComponent } from 'src/app/shared/icons/nav-bookmarks';
+import { NavHomeIconComponent } from 'src/app/shared/icons/nav-home.icon';
+import { NavMoviesIconComponent } from 'src/app/shared/icons/nav-movies.icon';
+import { NavTvSeriesIconComponent } from 'src/app/shared/icons/nav-tv-series.icon';
+import { NavBookMarksIconComponent } from 'src/app/shared/icons/nav-bookmarks.icon';
 
 @Component({
   standalone: true,
   imports: [
     CommonModule,
     RouterModule,
-    NavBookMarksComponent,
-    NavHomeComponent,
-    NavMoviesComponent,
-    NavTvSeriesComponent,
+    NavBookMarksIconComponent,
+    NavHomeIconComponent,
+    NavMoviesIconComponent,
+    NavTvSeriesIconComponent,
     NavItemComponent,
   ],
   selector: 'app-navbar',
