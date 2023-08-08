@@ -27,8 +27,14 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/data.json"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src/assets/scss"
+              ]
+            },
             "styles": [
               "src/styles.scss"
             ],
@@ -90,7 +96,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/data.json"
             ],
             "styles": [
               "src/styles.scss"

@@ -1,0 +1,16 @@
+@use "config" as *;
+
+.layout {
+  font-family: $font-outfit;
+  color: $color-white;
+  height: 100vh;
+  max-width: 100vw;
+  background: $color-dblue;
+  display: flex;
+
+  @extend %t-body-m;
+
+  .content {
+    flex-shrink: 0;
+  }
+}

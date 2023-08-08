@@ -1,0 +1,8 @@
+<a
+  [routerLink]="link"
+  class="nav-item"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: link === '/' }"
+>
+  <ng-content></ng-content>
+</a>

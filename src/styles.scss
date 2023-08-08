@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  font-size: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+button,
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}

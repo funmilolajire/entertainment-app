@@ -1,0 +1,14 @@
+@use "config" as *;
+
+.nav-item {
+  color: $color-gblue;
+  list-style: none;
+  transition: color 0.2s linear;
+  &:hover {
+    color: $color-red;
+    transition: color 0.2s linear;
+  }
+  &.active {
+    color: $color-white;
+  }
+}

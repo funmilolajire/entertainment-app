@@ -1,0 +1,37 @@
+%t-heading-l {
+  // ? typography heading (l)
+  font-size: 3.2rem;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+%t-heading-m {
+  // ? typography heading (m)
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+%t-heading-s {
+  // ? typography heading (s)
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+%t-heading-xs {
+  // ? typography heading (xs)
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+%t-body-m {
+  // ? typography body (m)
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+%t-body-s {
+  // ? typography body (s)
+  font-size: 1.3rem;
+  font-weight: 300;
+  opacity: 0.75;
+}
