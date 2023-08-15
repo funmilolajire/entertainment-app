@@ -28,5 +28,9 @@
   .layout {
     padding: 4.8rem 2.4rem 0;
     gap: 5.84rem;
+
+    .content {
+      width: 100%;
+    }
   }
 }
