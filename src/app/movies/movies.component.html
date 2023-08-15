@@ -1,20 +1,18 @@
-<app-layout>
-  <app-searchbar
-    class="search"
-    placeholder="Search for movies"
-    (searchData)="searchMovies($event)"
-  ></app-searchbar>
-  <section class="container" *ngIf="!searchTerm">
-    <app-content-heading heading="Movies" class="heading"></app-content-heading>
-    <div class="movies">
-      <app-movie-card
-        *ngFor="let movie of movies"
-        [movie]="movie"
-      ></app-movie-card>
-    </div>
-  </section>
-  <app-search-results
-    [searchResults]="movies"
-    [searchTerm]="searchTerm"
-  ></app-search-results>
-</app-layout>
+<app-searchbar
+  class="search"
+  placeholder="Search for movies"
+  (searchData)="searchMovies($event)"
+></app-searchbar>
+<section class="container" *ngIf="!searchTerm">
+  <app-content-heading heading="Movies" class="heading"></app-content-heading>
+  <div class="movies">
+    <app-movie-card
+      *ngFor="let movie of movies"
+      [movie]="movie"
+    ></app-movie-card>
+  </div>
+</section>
+<app-search-results
+  [searchResults]="movies"
+  [searchTerm]="searchTerm"
+></app-search-results>

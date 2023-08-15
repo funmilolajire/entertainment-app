@@ -1,39 +1,37 @@
-<app-layout>
-  <app-searchbar
-    class="search"
-    placeholder="Search for bookmarked shows"
-    (searchData)="searchBookmarks($event)"
-  ></app-searchbar>
-  <div class="container" *ngIf="!searchTerm">
-    <section class="movies">
-      <app-content-heading
-        heading="Bookmarked Movies"
-        class="heading"
-      ></app-content-heading>
-      <div class="list">
-        <app-movie-card
-          *ngFor="let bookmarked_movie of bookmarks.movies"
-          [movie]="bookmarked_movie"
-        ></app-movie-card>
-      </div>
-    </section>
+<app-searchbar
+  class="search"
+  placeholder="Search for bookmarked shows"
+  (searchData)="searchBookmarks($event)"
+></app-searchbar>
+<div class="container" *ngIf="!searchTerm">
+  <section class="movies">
+    <app-content-heading
+      heading="Bookmarked Movies"
+      class="heading"
+    ></app-content-heading>
+    <div class="list">
+      <app-movie-card
+        *ngFor="let bookmarked_movie of bookmarks.movies"
+        [movie]="bookmarked_movie"
+      ></app-movie-card>
+    </div>
+  </section>
 
-    <section class="series">
-      <app-content-heading
-        heading="Bookmarked TV Series"
-        class="heading"
-      ></app-content-heading>
-      <div class="list">
-        <app-movie-card
-          *ngFor="let bookmarked_show of bookmarks.series"
-          [movie]="bookmarked_show"
-        ></app-movie-card>
-      </div>
-    </section>
-  </div>
+  <section class="series">
+    <app-content-heading
+      heading="Bookmarked TV Series"
+      class="heading"
+    ></app-content-heading>
+    <div class="list">
+      <app-movie-card
+        *ngFor="let bookmarked_show of bookmarks.series"
+        [movie]="bookmarked_show"
+      ></app-movie-card>
+    </div>
+  </section>
+</div>
 
-  <app-search-results
-    [searchResults]="searchResults"
-    [searchTerm]="searchTerm"
-  ></app-search-results>
-</app-layout>
+<app-search-results
+  [searchResults]="searchResults"
+  [searchTerm]="searchTerm"
+></app-search-results>

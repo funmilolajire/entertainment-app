@@ -1,60 +1,58 @@
-<app-second-layout>
-  <section class="container">
-    <h2 class="heading">Login</h2>
-    <form (ngSubmit)="onSubmit(f)" class="form" #f="ngForm">
-      <div class="inputs">
-        <div class="input-box">
-          <input
-            type="text"
-            placeholder="Email address"
-            aria-label="email"
-            ngModel
-            name="email"
-            #email="ngModel"
-            email
-            required
-            [ngClass]="{ error: !!email.errors && email.touched }"
-          />
-          <span class="error-text" *ngIf="!!email.errors && email.touched">{{
-            email.errors["email"]
-              ? "Invalid email"
-              : email.errors["required"]
-              ? "Can't be empty"
-              : "Error"
-          }}</span>
-        </div>
-        <div class="input-box">
-          <input
-            type="password"
-            placeholder="Password"
-            aria-label="password"
-            ngModel
-            name="password"
-            #password="ngModel"
-            required
-            [minlength]="6"
-            [ngClass]="{ error: !!password.errors && password.touched }"
-          />
-          <span
-            class="error-text"
-            *ngIf="!!password.errors && password.touched"
-            >{{
-              password.errors["required"]
-                ? "Can't be empty"
-                : password.errors["minlength"]
-                ? "Too short"
-                : "Error"
-            }}</span
-          >
-        </div>
+<section class="container">
+  <h2 class="heading">Login</h2>
+  <form (ngSubmit)="onSubmit(f)" class="form" #f="ngForm">
+    <div class="inputs">
+      <div class="input-box">
+        <input
+          type="text"
+          placeholder="Email address"
+          aria-label="email"
+          ngModel
+          name="email"
+          #email="ngModel"
+          email
+          required
+          [ngClass]="{ error: !!email.errors && email.touched }"
+        />
+        <span class="error-text" *ngIf="!!email.errors && email.touched">{{
+          email.errors["email"]
+            ? "Invalid email"
+            : email.errors["required"]
+            ? "Can't be empty"
+            : "Error"
+        }}</span>
       </div>
-      <button class="button" type="submit" [disabled]="!f.valid || loading">
-        {{ loading ? "Logging in" : "Login to your account" }}
-      </button>
-    </form>
-    <div class="change">
-      <p>Don’t have an account?</p>
-      <button (click)="goToSignUp()" type="button">Sign Up</button>
+      <div class="input-box">
+        <input
+          type="password"
+          placeholder="Password"
+          aria-label="password"
+          ngModel
+          name="password"
+          #password="ngModel"
+          required
+          [minlength]="6"
+          [ngClass]="{ error: !!password.errors && password.touched }"
+        />
+        <span
+          class="error-text"
+          *ngIf="!!password.errors && password.touched"
+          >{{
+            password.errors["required"]
+              ? "Can't be empty"
+              : password.errors["minlength"]
+              ? "Too short"
+              : "Error"
+          }}</span
+        >
+      </div>
     </div>
-  </section>
-</app-second-layout>
+    <button class="button" type="submit" [disabled]="!f.valid || loading">
+      {{ loading ? "Logging in" : "Login to your account" }}
+    </button>
+  </form>
+  <div class="change">
+    <p>Don’t have an account?</p>
+    <button (click)="goToSignUp()" type="button">Sign Up</button>
+  </div>
+</section>

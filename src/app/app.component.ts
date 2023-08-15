@@ -7,7 +7,7 @@ import { DataService } from './shared/data.service';
   standalone: true,
   imports: [RouterModule, LayoutComponent],
   selector: 'app-root',
-  template: `<router-outlet></router-outlet> `,
+  template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent implements OnInit, OnDestroy {
   constructor(private dataService: DataService) {}

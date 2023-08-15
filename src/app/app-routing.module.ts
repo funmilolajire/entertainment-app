@@ -7,58 +7,72 @@ import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { LayoutComponent } from './layout/layout.component';
+import { SecondLayoutComponent } from './layout/second-layout/second-layout.component';
 
 const generateTitle = (title: string) => `Entertainment | ${title}`;
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    component: HomeComponent,
-    title: generateTitle('Home'),
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: HomeComponent,
+        title: generateTitle('Home'),
+      },
+      {
+        path: 'movies',
+        component: MoviesComponent,
+        title: generateTitle('Movies'),
+      },
+      {
+        path: 'tv-series',
+        component: TvSeriesComponent,
+        title: generateTitle('Tv Series'),
+      },
+      {
+        path: 'bookmarks',
+        component: BookmarksComponent,
+        title: generateTitle('Bookmarks'),
+      },
+    ],
   },
   {
-    path: 'movies',
-    component: MoviesComponent,
-    title: generateTitle('Movies'),
-  },
-  {
-    path: 'tv-series',
-    component: TvSeriesComponent,
-    title: generateTitle('Tv Series'),
-  },
-  {
-    path: 'bookmarks',
-    component: BookmarksComponent,
-    title: generateTitle('Bookmarks'),
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    title: generateTitle('Login'),
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-    title: generateTitle('Sign Up'),
-  },
-  {
-    path: '404',
-    component: ErrorComponent,
-    data: { type: '404' },
-    title: generateTitle('Not Found'),
-  },
-  {
-    path: '401',
-    component: ErrorComponent,
-    data: { type: '401' },
-    title: generateTitle('Unauthorized'),
-  },
-  {
-    path: '500',
-    component: ErrorComponent,
-    data: { type: '500' },
-    title: generateTitle('Server Error'),
+    path: '',
+    component: SecondLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        title: generateTitle('Login'),
+      },
+      {
+        path: 'signup',
+        component: SignupComponent,
+        title: generateTitle('Sign Up'),
+      },
+      {
+        path: '404',
+        component: ErrorComponent,
+        data: { type: '404' },
+        title: generateTitle('Not Found'),
+      },
+      {
+        path: '401',
+        component: ErrorComponent,
+        data: { type: '401' },
+        title: generateTitle('Unauthorized'),
+      },
+      {
+        path: '500',
+        component: ErrorComponent,
+        data: { type: '500' },
+        title: generateTitle('Server Error'),
+      },
+    ],
   },
   { path: '**', redirectTo: '/404' },
 ];

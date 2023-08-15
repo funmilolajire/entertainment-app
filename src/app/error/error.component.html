@@ -1,16 +1,14 @@
-<app-second-layout>
-  <section class="container">
-    <h2 class="heading">{{ errorType }}</h2>
-    <p class="info" *ngIf="errorType === 404">This page does not exist.</p>
-    <p class="info" *ngIf="errorType === 401">
-      You are unauthorized to access this page.
-    </p>
-    <p class="info" *ngIf="errorType === 500">A server error occurred.</p>
-    <button class="button" (click)="navigateAway()" *ngIf="errorType === 404">
-      Go back
-    </button>
-    <button class="button" (click)="navigateAway()" *ngIf="errorType === 401">
-      Go to Login
-    </button>
-  </section>
-</app-second-layout>
+<section class="container">
+  <h2 class="heading">{{ errorType }}</h2>
+  <p class="info" *ngIf="errorType === 404">This page does not exist.</p>
+  <p class="info" *ngIf="errorType === 401">
+    You are unauthorized to access this page.
+  </p>
+  <p class="info" *ngIf="errorType === 500">A server error occurred.</p>
+  <button class="button" (click)="navigateAway()" *ngIf="errorType === 404">
+    Go back
+  </button>
+  <button class="button" (click)="navigateAway()" *ngIf="errorType === 401">
+    Go to Login
+  </button>
+</section>

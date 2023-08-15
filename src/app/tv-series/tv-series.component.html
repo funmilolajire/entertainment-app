@@ -1,23 +1,18 @@
-<app-layout>
-  <app-searchbar
-    class="search"
-    placeholder="Search for TV series"
-    (searchData)="searchSeries($event)"
-  ></app-searchbar>
-  <section class="container" *ngIf="!searchTerm">
-    <app-content-heading
-      heading="TV Series"
-      class="heading"
-    ></app-content-heading>
-    <div class="series">
-      <app-movie-card
-        *ngFor="let show of series"
-        [movie]="show"
-      ></app-movie-card>
-    </div>
-  </section>
-  <app-search-results
-    [searchResults]="series"
-    [searchTerm]="searchTerm"
-  ></app-search-results>
-</app-layout>
+<app-searchbar
+  class="search"
+  placeholder="Search for TV series"
+  (searchData)="searchSeries($event)"
+></app-searchbar>
+<section class="container" *ngIf="!searchTerm">
+  <app-content-heading
+    heading="TV Series"
+    class="heading"
+  ></app-content-heading>
+  <div class="series">
+    <app-movie-card *ngFor="let show of series" [movie]="show"></app-movie-card>
+  </div>
+</section>
+<app-search-results
+  [searchResults]="series"
+  [searchTerm]="searchTerm"
+></app-search-results>
