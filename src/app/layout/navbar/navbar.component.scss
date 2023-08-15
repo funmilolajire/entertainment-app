@@ -7,7 +7,7 @@
   height: 100vh;
   position: relative;
   flex-shrink: 0;
-
+  z-index: 10;
   nav {
     position: fixed;
     top: 3.2rem;
@@ -22,8 +22,14 @@
   }
 
   .logo {
-    display: inline-block;
-    height: 2.7rem;
+    display: inline-flex;
+    align-items: center;
+    width: 3.2rem;
+    height: fit-content;
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 
   .nav-list {
@@ -33,7 +39,12 @@
     align-items: center;
     gap: 4rem;
   }
-
+  .nav-item {
+    display: inline-flex;
+  }
+  .icon {
+    display: inline-flex;
+  }
   .avatar {
     margin-top: auto;
     width: 4rem;
@@ -45,6 +56,68 @@
     img {
       width: 100%;
       height: 100%;
+    }
+  }
+}
+
+@media all and (max-width: 810px) {
+  .navbar {
+    width: 100vw;
+    height: 9.7rem;
+    padding: 0;
+
+    nav {
+      flex-direction: row;
+      width: unset;
+      height: 7.2rem;
+      padding: 0 1.6rem 0 2.4rem;
+      left: 2.5rem;
+      right: 2.5rem;
+      top: 2.5rem;
+      bottom: unset;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-list {
+      flex-direction: row;
+      margin-top: 0;
+    }
+    .icon {
+      height: 2rem;
+    }
+    .avatar {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 100%;
+      margin-top: unset;
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .navbar {
+    height: 5.6rem;
+
+    nav {
+      border-radius: 0;
+      height: 5.6rem;
+      width: 100%;
+      padding: 0 1.6rem;
+      left: unset;
+      right: unset;
+      top: unset;
+      bottom: unset;
+    }
+    .logo {
+      width: 2.5rem;
+    }
+    .nav-list {
+    }
+
+    .avatar {
+      width: 2.4rem;
+      height: 2.4rem;
     }
   }
 }

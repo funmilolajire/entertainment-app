@@ -5,6 +5,8 @@ import { MoviesComponent } from './movies/movies.component';
 import { TvSeriesComponent } from './tv-series/tv-series.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { ErrorComponent } from './error/error.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const generateTitle = (title: string) => `Entertainment | ${title}`;
 
@@ -30,7 +32,34 @@ const routes: Routes = [
     component: BookmarksComponent,
     title: generateTitle('Bookmarks'),
   },
-  { path: '404', component: ErrorComponent, title: generateTitle('Not Found') },
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: generateTitle('Login'),
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    title: generateTitle('Sign Up'),
+  },
+  {
+    path: '404',
+    component: ErrorComponent,
+    data: { type: '404' },
+    title: generateTitle('Not Found'),
+  },
+  {
+    path: '401',
+    component: ErrorComponent,
+    data: { type: '401' },
+    title: generateTitle('Unauthorized'),
+  },
+  {
+    path: '500',
+    component: ErrorComponent,
+    data: { type: '500' },
+    title: generateTitle('Server Error'),
+  },
   { path: '**', redirectTo: '/404' },
 ];
 

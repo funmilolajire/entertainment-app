@@ -4,8 +4,8 @@
     placeholder="Search for bookmarked shows"
     (searchData)="searchBookmarks($event)"
   ></app-searchbar>
-  <div class="container">
-    <section class="movies" *ngIf="!searchTerm">
+  <div class="container" *ngIf="!searchTerm">
+    <section class="movies">
       <app-content-heading
         heading="Bookmarked Movies"
         class="heading"
@@ -18,7 +18,7 @@
       </div>
     </section>
 
-    <section class="series" *ngIf="!searchTerm">
+    <section class="series">
       <app-content-heading
         heading="Bookmarked TV Series"
         class="heading"
@@ -30,9 +30,10 @@
         ></app-movie-card>
       </div>
     </section>
-    <app-search-results
-      [searchResults]="searchResults"
-      [searchTerm]="searchTerm"
-    ></app-search-results>
   </div>
+
+  <app-search-results
+    [searchResults]="searchResults"
+    [searchTerm]="searchTerm"
+  ></app-search-results>
 </app-layout>

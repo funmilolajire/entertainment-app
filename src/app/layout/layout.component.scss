@@ -1,9 +1,6 @@
 @use "config" as *;
 
 .layout {
-  font-family: $font-outfit;
-  color: $color-white;
-  background: $color-dblue;
   display: flex;
   gap: 3.6rem;
   position: relative;
@@ -16,5 +13,25 @@
     padding-bottom: 5.2rem;
     position: relative;
     height: 100%;
+  }
+}
+
+@media all and (max-width: 810px) {
+  .layout {
+    flex-direction: column;
+    gap: 3.4rem;
+    .content {
+      padding: 0 2.5rem 5.6rem;
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .layout {
+    flex-direction: column;
+    gap: 2.6rem;
+    .content {
+      padding: 0 1.6rem 6.1rem;
+    }
   }
 }

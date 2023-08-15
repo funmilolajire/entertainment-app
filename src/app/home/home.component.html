@@ -4,33 +4,37 @@
     placeholder="Search for movies or TV series"
     (searchData)="searchData($event)"
   ></app-searchbar>
-  <section class="trending" *ngIf="!searchTerm">
-    <app-content-heading
-      heading="Trending"
-      class="heading"
-    ></app-content-heading>
-    <div class="movies">
-      <div class="slider">
+
+  <ng-container *ngIf="!searchTerm">
+    <section class="trending">
+      <app-content-heading
+        heading="Trending"
+        class="heading"
+      ></app-content-heading>
+      <div class="movies">
+        <div class="slider">
+          <app-movie-card
+            mode="trending"
+            *ngFor="let data of data.trending"
+            [movie]="data"
+          ></app-movie-card>
+        </div>
+      </div>
+    </section>
+    <section class="recommended">
+      <app-content-heading
+        heading="Recommended for you"
+        class="heading"
+      ></app-content-heading>
+      <div class="movies">
         <app-movie-card
-          mode="trending"
-          *ngFor="let data of data.trending"
+          *ngFor="let data of data.recommended"
           [movie]="data"
         ></app-movie-card>
       </div>
-    </div>
-  </section>
-  <section class="recommended" *ngIf="!searchTerm">
-    <app-content-heading
-      heading="Recommended for you"
-      class="heading"
-    ></app-content-heading>
-    <div class="movies">
-      <app-movie-card
-        *ngFor="let data of data.recommended"
-        [movie]="data"
-      ></app-movie-card>
-    </div>
-  </section>
+    </section>
+  </ng-container>
+
   <app-search-results
     [searchResults]="searchResults"
     [searchTerm]="searchTerm"

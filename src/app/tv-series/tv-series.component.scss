@@ -7,3 +7,31 @@
     gap: 3.2rem 4rem;
   }
 }
+
+@media all and (max-width: 810px) {
+  .container {
+    padding-right: 0;
+    .series {
+      grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+      margin-top: 2.4rem;
+      gap: 2.4rem 2.9rem;
+    }
+  }
+}
+
+@media all and (max-width: 530px) {
+  .container {
+    .series {
+      grid-template-columns: repeat(auto-fill, minmax(19.5rem, 1fr));
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .container {
+    .series {
+      grid-template-columns: repeat(auto-fill, minmax(16.4rem, 1fr));
+      gap: 1.6rem 1.5rem;
+    }
+  }
+}

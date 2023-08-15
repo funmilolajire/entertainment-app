@@ -1,19 +1,25 @@
 .trending {
   margin-bottom: 4rem;
-  padding-right: 3.6rem;
   position: relative;
   .movies {
     margin-top: 2.5rem;
     position: relative;
-    display: inline-grid;
-    // width: 100%;
+    display: grid;
+    height: 23rem;
+    width: 100%;
     overflow: auto;
     .slider {
+      position: absolute;
+      padding-right: 4.4rem;
+      left: 0;
       display: inline-flex;
-      flex-wrap: wrap;
       gap: 4rem;
     }
   }
+}
+
+.trending .movies::-webkit-scrollbar {
+  height: 0;
 }
 
 .recommended {
@@ -23,5 +29,45 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
     gap: 3.2rem 4rem;
+  }
+}
+
+@media all and (max-width: 810px) {
+  .recommended {
+    padding-right: 0;
+    .movies {
+      grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+      margin-top: 2.4rem;
+      gap: 2.4rem 2.9rem;
+    }
+  }
+}
+
+@media all and (max-width: 530px) {
+  .recommended {
+    .movies {
+      grid-template-columns: repeat(auto-fill, minmax(19.5rem, 1fr));
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .trending {
+    margin-bottom: 2.4rem;
+    .movies {
+      margin-top: 1.6rem;
+      height: 14rem;
+      .slider {
+        padding-right: 2.5rem;
+        gap: 1.6rem;
+      }
+    }
+  }
+
+  .recommended {
+    .movies {
+      grid-template-columns: repeat(auto-fill, minmax(16.4rem, 1fr));
+      gap: 1.6rem 1.5rem;
+    }
   }
 }

@@ -4,11 +4,21 @@
   color: $color-gblue;
   list-style: none;
   transition: color 0.2s linear;
+  display: inline-flex;
+  font-size: 2rem;
+  line-height: 1;
   &:hover {
     color: $color-red;
     transition: color 0.2s linear;
   }
   &.active {
     color: $color-white;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .nav-item {
+    font-size: 1.6rem;
+    height: 1.6rem;
   }
 }

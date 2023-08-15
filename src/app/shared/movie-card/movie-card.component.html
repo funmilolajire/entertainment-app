@@ -13,6 +13,22 @@
     <h3 class="title">{{ movie.title }}</h3>
   </section>
   <picture class="thumbnail">
+    <source
+      media="(max-width: 810px)"
+      [srcset]="
+        mode === 'trending'
+          ? movie.thumbnail.trending.large
+          : movie.thumbnail.regular.medium
+      "
+    />
+    <source
+      media="(max-width: 480px)"
+      [srcset]="
+        mode === 'trending'
+          ? movie.thumbnail.trending.small
+          : movie.thumbnail.regular.small
+      "
+    />
     <img
       [src]="
         mode === 'trending'
