@@ -1,13 +1,14 @@
 .trending {
   margin-bottom: 4rem;
   position: relative;
-  .movies {
+  .slider-container {
     margin-top: 2.5rem;
     position: relative;
     display: grid;
     height: 23rem;
     width: 100%;
     overflow: auto;
+    user-select: none;
     .slider {
       position: absolute;
       padding-right: 4.4rem;
@@ -18,7 +19,7 @@
   }
 }
 
-.trending .movies::-webkit-scrollbar {
+.trending .slider-container::-webkit-scrollbar {
   height: 0;
 }
 
@@ -54,7 +55,7 @@
 @media all and (max-width: 480px) {
   .trending {
     margin-bottom: 2.4rem;
-    .movies {
+    .slider-container {
       margin-top: 1.6rem;
       height: 14rem;
       .slider {

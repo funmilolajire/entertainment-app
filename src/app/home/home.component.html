@@ -10,8 +10,16 @@
       heading="Trending"
       class="heading"
     ></app-content-heading>
-    <div class="movies">
-      <div class="slider">
+    <div
+      class="slider-container"
+      #sliderContainer
+      (mouseleave)="onMouseLeave($event)"
+      (mouseup)="onMouseUp($event)"
+      (mousedown)="onMouseDown($event)"
+      (mouseenter)="onMouseEnter($event)"
+      (mousemove)="onMouseMove($event)"
+    >
+      <div class="slider" #slider>
         <app-movie-card
           mode="trending"
           *ngFor="let data of data.trending"
