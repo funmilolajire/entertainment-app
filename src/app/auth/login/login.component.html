@@ -47,6 +47,7 @@
         >
       </div>
     </div>
+    <p class="sign-in-error">{{ signInError }}</p>
     <button class="button" type="submit" [disabled]="!f.valid || loading">
       {{ loading ? "Logging in" : "Login to your account" }}
     </button>

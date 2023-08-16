@@ -1,18 +1,17 @@
+import { BehaviorSubject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
-  FormsModule,
-  NgForm,
   ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { SecondLayoutComponent } from 'src/app/layout/second-layout/second-layout.component';
+import { SupabaseService } from 'src/app/supabase.service';
 
 @Component({
   selector: 'app-signup',
@@ -23,6 +22,7 @@ import { SecondLayoutComponent } from 'src/app/layout/second-layout/second-layou
 })
 export class SignupComponent implements OnInit {
   loading = false;
+  signUpError = '';
   signupForm: FormGroup = new FormGroup({});
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [
@@ -30,31 +30,56 @@ export class SignupComponent implements OnInit {
     Validators.minLength(6),
   ]);
   repeat_password = new FormControl('', [Validators.required]);
+  passwordChange$ = new BehaviorSubject('');
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private supabase: SupabaseService) {}
 
   ngOnInit(): void {
     this.repeat_password.addValidators(this.samePasswordValidator());
+    this.password.addValidators(this.samePasswordValidator('password'));
     this.signupForm = new FormGroup({
       email: this.email,
       password: this.password,
       repeat_password: this.repeat_password,
     });
+    this.passwordChange$.subscribe((password) =>
+      this.repeat_password.setErrors(
+        password === this.repeat_password.value
+          ? this.repeat_password.errors
+          : { ...(this.repeat_password.errors || {}), samePassword: true }
+      )
+    );
   }
 
-  samePasswordValidator(): ValidatorFn {
+  samePasswordValidator(mode?: string): ValidatorFn {
     return (): ValidationErrors | null => {
       const password = this.password.value;
       const repeat_password = this.repeat_password.value;
+      if (mode === 'password') {
+        this.passwordChange$.next(password || '');
+        return null;
+      }
       return password === repeat_password ? null : { samePassword: true };
     };
   }
 
-  onSubmit() {
-    this.loading = true;
-    console.log(this.signupForm.value);
-    this.loading = false;
-    this.signupForm.reset();
+  async onSubmit(): Promise<void> {
+    try {
+      this.loading = true;
+      const email = this.signupForm.value.email as string;
+      const password = this.signupForm.value.password as string;
+      const { error, data } = await this.supabase.signUp(email, password);
+      console.log({ ...data });
+      if (error) throw error;
+    } catch (error) {
+      if (error instanceof Error) {
+        this.signUpError = error.message;
+        console.log(error.message);
+      }
+    } finally {
+      this.signupForm.reset();
+      this.loading = false;
+    }
   }
 
   goToLogin() {

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SecondLayoutComponent } from 'src/app/layout/second-layout/second-layout.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SupabaseService } from 'src/app/supabase.service';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +14,27 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loading = false;
+  signInError = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private supabase: SupabaseService) {}
 
-  onSubmit(f: NgForm) {
-    this.loading = true;
-    console.log(f.value);
-    this.loading = false;
-    f.reset();
+  async onSubmit(f: NgForm): Promise<void> {
+    try {
+      this.loading = true;
+      const email = f.value.email as string;
+      const password = f.value.password as string;
+      const { error, data } = await this.supabase.signIn(email, password);
+      console.log({ ...data });
+      if (error) throw error;
+    } catch (error) {
+      if (error instanceof Error) {
+        this.signInError = error.message || 'An error occurred';
+        console.log(error.message);
+      }
+    } finally {
+      f.reset();
+      this.loading = false;
+    }
   }
 
   goToSignUp() {
