@@ -95,6 +95,10 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
   }
 
+  loggedIn(value: boolean) {
+    this.isLoggedIn = value;
+  }
+
   goToLogin() {
     this.router.navigateByUrl('/login');
   }

@@ -17,28 +17,31 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivateChild: [canActivateGuard],
     children: [
       {
         path: '',
         pathMatch: 'full',
         component: HomeComponent,
         title: generateTitle('Home'),
+        canActivate: [canActivateGuard],
       },
       {
         path: 'movies',
         component: MoviesComponent,
         title: generateTitle('Movies'),
+        canActivate: [canActivateGuard],
       },
       {
         path: 'tv-series',
         component: TvSeriesComponent,
         title: generateTitle('Tv Series'),
+        canActivate: [canActivateGuard],
       },
       {
         path: 'bookmarks',
         component: BookmarksComponent,
         title: generateTitle('Bookmarks'),
+        canActivate: [canActivateGuard],
       },
     ],
   },

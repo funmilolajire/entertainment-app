@@ -85,4 +85,4 @@
   </div>
 </section>
 
-<app-isloggedin *ngIf="isLoggedIn" />
+<app-isloggedin *ngIf="isLoggedIn" (loggedIn)="loggedIn($event)" />

@@ -9,17 +9,14 @@ export const canActivateGuard: CanActivateFn = async (route, state) => {
   const session = await supabase.checkSession();
   const { path } = route.routeConfig as Route;
 
-  if (session) {
-    if (path && ['login', 'signup'].includes(path)) {
-      route.data = { isLoggedIn: true };
-    }
-    console.log('session', session);
+  if (path && ['login', 'signup'].includes(path)) {
+    route.data = { ...(route.data ? route.data : {}), isLoggedIn: !!session };
+    console.log(route.data);
     return true;
   }
-  return router.createUrlTree(['/login']);
+  if (session) {
+    return true;
+  } else {
+    return router.parseUrl('/login');
+  }
 };
-
-// runInInjectionContext(
-//   Injector.create({ providers: [] }),
-//   () => canActivateGuard
-// );

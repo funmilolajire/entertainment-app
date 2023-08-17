@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SupabaseService } from 'src/app/supabase.service';
 
 @Component({
@@ -11,8 +11,11 @@ import { SupabaseService } from 'src/app/supabase.service';
   styleUrls: ['./isloggedin.component.scss'],
 })
 export class IsloggedinComponent {
+  @Output() loggedIn = new EventEmitter<boolean>();
   loading = false;
+
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private location: Location,
     private supabase: SupabaseService
@@ -24,9 +27,9 @@ export class IsloggedinComponent {
   async signOut() {
     try {
       this.loading = true;
-      const { error } = await this.supabase.signOut();
-      if (error) throw error;
-      this.router.navigateByUrl('/login');
+      await this.supabase.signOut();
+      this.loggedIn.emit(false);
+      this.router.navigate(['/login']);
     } catch (error) {
       if (error instanceof Error) {
         console.log(error.message);

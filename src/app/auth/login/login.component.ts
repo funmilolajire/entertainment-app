@@ -30,7 +30,9 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.route.snapshot.data['isLoggedIn'];
+    this.route.data.subscribe((data) => {
+      this.isLoggedIn = data['isLoggedIn'];
+    });
   }
 
   async onSubmit(f: NgForm): Promise<void> {
@@ -39,7 +41,6 @@ export class LoginComponent implements OnInit {
       const email = f.value.email as string;
       const password = f.value.password as string;
       const { error, data } = await this.supabase.signIn(email, password);
-      console.log({ ...data });
       if (error) throw error;
       if (data.session) this.router.navigateByUrl('/');
     } catch (error) {
@@ -51,6 +52,10 @@ export class LoginComponent implements OnInit {
       f.reset();
       this.loading = false;
     }
+  }
+
+  loggedIn(value: boolean) {
+    this.isLoggedIn = value;
   }
 
   goToSignUp() {
