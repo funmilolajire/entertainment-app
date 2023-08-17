@@ -9,6 +9,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LayoutComponent } from './layout/layout.component';
 import { SecondLayoutComponent } from './layout/second-layout/second-layout.component';
+import { canActivateGuard } from './guards/can-activate.guard';
 
 const generateTitle = (title: string) => `Entertainment | ${title}`;
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivateChild: [canActivateGuard],
     children: [
       {
         path: '',
@@ -48,11 +50,13 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         title: generateTitle('Login'),
+        canActivate: [canActivateGuard],
       },
       {
         path: 'signup',
         component: SignupComponent,
         title: generateTitle('Sign Up'),
+        canActivate: [canActivateGuard],
       },
       {
         path: '404',

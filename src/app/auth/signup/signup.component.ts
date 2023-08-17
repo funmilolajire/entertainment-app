@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -12,16 +12,23 @@ import {
 } from '@angular/forms';
 import { SecondLayoutComponent } from 'src/app/layout/second-layout/second-layout.component';
 import { SupabaseService } from 'src/app/supabase.service';
+import { IsloggedinComponent } from '../isloggedin/isloggedin.component';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, SecondLayoutComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    SecondLayoutComponent,
+    ReactiveFormsModule,
+    IsloggedinComponent,
+  ],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   loading = false;
+  isLoggedIn = false;
   signUpError = '';
   signupForm: FormGroup = new FormGroup({});
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -32,7 +39,11 @@ export class SignupComponent implements OnInit {
   repeat_password = new FormControl('', [Validators.required]);
   passwordChange$ = new BehaviorSubject('');
 
-  constructor(private router: Router, private supabase: SupabaseService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private readonly supabase: SupabaseService
+  ) {}
 
   ngOnInit(): void {
     this.repeat_password.addValidators(this.samePasswordValidator());
@@ -49,6 +60,7 @@ export class SignupComponent implements OnInit {
           : { ...(this.repeat_password.errors || {}), samePassword: true }
       )
     );
+    this.isLoggedIn = !!this.route.snapshot.data['isLoggedIn'];
   }
 
   samePasswordValidator(mode?: string): ValidatorFn {
@@ -71,6 +83,7 @@ export class SignupComponent implements OnInit {
       const { error, data } = await this.supabase.signUp(email, password);
       console.log({ ...data });
       if (error) throw error;
+      if (data.user) this.router.navigateByUrl('/login');
     } catch (error) {
       if (error instanceof Error) {
         this.signUpError = error.message;
@@ -84,5 +97,9 @@ export class SignupComponent implements OnInit {
 
   goToLogin() {
     this.router.navigateByUrl('/login');
+  }
+
+  ngOnDestroy(): void {
+    this.passwordChange$.unsubscribe();
   }
 }

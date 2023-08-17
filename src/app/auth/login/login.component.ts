@@ -1,22 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SecondLayoutComponent } from 'src/app/layout/second-layout/second-layout.component';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SupabaseService } from 'src/app/supabase.service';
+import { IsloggedinComponent } from '../isloggedin/isloggedin.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, SecondLayoutComponent, FormsModule],
+  imports: [
+    CommonModule,
+    SecondLayoutComponent,
+    FormsModule,
+    IsloggedinComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loading = false;
   signInError = '';
+  isLoggedIn = false;
 
-  constructor(private router: Router, private supabase: SupabaseService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private readonly supabase: SupabaseService
+  ) {}
+
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.route.snapshot.data['isLoggedIn'];
+  }
 
   async onSubmit(f: NgForm): Promise<void> {
     try {
@@ -26,6 +41,7 @@ export class LoginComponent {
       const { error, data } = await this.supabase.signIn(email, password);
       console.log({ ...data });
       if (error) throw error;
+      if (data.session) this.router.navigateByUrl('/');
     } catch (error) {
       if (error instanceof Error) {
         this.signInError = error.message || 'An error occurred';

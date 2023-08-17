@@ -21,7 +21,7 @@ export interface Profile {
 })
 export class SupabaseService {
   private supabase: SupabaseClient;
-  _session: AuthSession | null = null;
+  private _session: AuthSession | null = null;
 
   constructor() {
     this.supabase = createClient(
@@ -49,6 +49,12 @@ export class SupabaseService {
     callback: (event: AuthChangeEvent, session: Session | null) => void
   ) {
     return this.supabase.auth.onAuthStateChange(callback);
+  }
+
+  async checkSession() {
+    const res = await this.supabase.auth.getSession();
+    const session = res.data.session;
+    return session;
   }
 
   signUp(email: string, password: string) {

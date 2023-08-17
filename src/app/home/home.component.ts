@@ -1,11 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ContentHeadingComponent } from '../shared/content-heading/content-heading.component';
 import { MovieCardComponent } from '../shared/movie-card/movie-card.component';
 import { SearchbarComponent } from '../shared/searchbar/searchbar.component';
@@ -28,7 +22,7 @@ import { LayoutComponent } from '../layout/layout.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   data = { trending: [] as IData[], recommended: [] as IData[] };
   searchResults = [] as IData[];
   searchTerm = '';
@@ -58,12 +52,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.data.recommended = data.filter((data) => !data.isTrending);
       this.data.trending = data.filter((data) => data.isTrending);
     });
-  }
-
-  ngAfterViewInit(): void {
-    // this.startPosition = this.sliderRef
-    //   ? this.sliderRef.nativeElement.offsetLeft
-    //   : 0;
   }
 
   // ? handlers for draggable logic
