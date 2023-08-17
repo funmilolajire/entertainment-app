@@ -11,7 +11,6 @@ export const canActivateGuard: CanActivateFn = async (route, state) => {
 
   if (path && ['login', 'signup'].includes(path)) {
     route.data = { ...(route.data ? route.data : {}), isLoggedIn: !!session };
-    console.log(route.data);
     return true;
   }
   if (session) {

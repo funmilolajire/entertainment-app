@@ -81,7 +81,6 @@ export class SignupComponent implements OnInit, OnDestroy {
       const email = this.signupForm.value.email as string;
       const password = this.signupForm.value.password as string;
       const { error, data } = await this.supabase.signUp(email, password);
-      console.log({ ...data });
       if (error) throw error;
       if (data.user) this.router.navigateByUrl('/login');
     } catch (error) {
