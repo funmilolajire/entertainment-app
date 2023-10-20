@@ -5,11 +5,8 @@ import { MoviesComponent } from './movies/movies.component';
 import { TvSeriesComponent } from './tv-series/tv-series.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { ErrorComponent } from './error/error.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
 import { LayoutComponent } from './layout/layout.component';
 import { SecondLayoutComponent } from './layout/second-layout/second-layout.component';
-import { canActivateGuard } from './guards/can-activate.guard';
 
 const generateTitle = (title: string) => `Entertainment | ${title}`;
 
@@ -23,25 +20,25 @@ const routes: Routes = [
         pathMatch: 'full',
         component: HomeComponent,
         title: generateTitle('Home'),
-        canActivate: [canActivateGuard],
+        // canActivate: [canActivateGuard],
       },
       {
         path: 'movies',
         component: MoviesComponent,
         title: generateTitle('Movies'),
-        canActivate: [canActivateGuard],
+        // canActivate: [canActivateGuard],
       },
       {
         path: 'tv-series',
         component: TvSeriesComponent,
         title: generateTitle('Tv Series'),
-        canActivate: [canActivateGuard],
+        // canActivate: [canActivateGuard],
       },
       {
         path: 'bookmarks',
         component: BookmarksComponent,
         title: generateTitle('Bookmarks'),
-        canActivate: [canActivateGuard],
+        // canActivate: [canActivateGuard],
       },
     ],
   },
@@ -49,18 +46,6 @@ const routes: Routes = [
     path: '',
     component: SecondLayoutComponent,
     children: [
-      {
-        path: 'login',
-        component: LoginComponent,
-        title: generateTitle('Login'),
-        canActivate: [canActivateGuard],
-      },
-      {
-        path: 'signup',
-        component: SignupComponent,
-        title: generateTitle('Sign Up'),
-        canActivate: [canActivateGuard],
-      },
       {
         path: '404',
         component: ErrorComponent,
