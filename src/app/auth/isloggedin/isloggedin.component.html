@@ -1,0 +1,13 @@
+<section class="container">
+  <h2 class="heading">User is Logged In</h2>
+  <p class="info">
+    This user is currently logged in. Go back or sign out to log in as another
+    user.
+  </p>
+  <button class="button" (click)="navigateAway()" [disabled]="loading">
+    Go back
+  </button>
+  <button class="button" (click)="signOut()" [disabled]="loading">
+    Sign Out
+  </button>
+</section>

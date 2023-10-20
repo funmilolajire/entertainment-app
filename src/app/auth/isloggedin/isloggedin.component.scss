@@ -1,0 +1,58 @@
+@use "config" as *;
+
+.container {
+  width: 40rem;
+  padding: 3.2rem;
+  background: $color-sdblue;
+  border-radius: 20px;
+
+  .heading {
+    margin-bottom: 4rem;
+    @extend %t-heading-l;
+  }
+
+  .info {
+    @extend %t-body-m;
+    margin-bottom: 2.4rem;
+  }
+
+  .button {
+    width: 100%;
+    height: 4.8rem;
+    border-radius: 6px;
+    background: $color-red;
+    transition: 0.2s all linear;
+    @extend %t-body-m;
+
+    &:hover {
+      background: $color-white;
+      color: $color-sdblue;
+      transition: 0.2s all linear;
+    }
+
+    &:disabled {
+      background: $color-gblue;
+      cursor: not-allowed;
+      user-select: none;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    &:last-child {
+      background: $color-dblue;
+      border: 1px solid $color-dblue;
+      &:hover {
+        border-color: $color-red;
+        background: $color-sdblue;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .container {
+    width: 100%;
+  }
+}

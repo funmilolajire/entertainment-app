@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container" *ngIf="!isLoggedIn">
   <h2 class="heading">Sign Up</h2>
   <form (ngSubmit)="onSubmit()" class="form" [formGroup]="signupForm">
     <div class="inputs">
@@ -70,6 +70,7 @@
         >
       </div>
     </div>
+    <p class="sign-up-error">{{ signUpError }}</p>
     <button
       class="button"
       type="submit"
@@ -83,3 +84,5 @@
     <button (click)="goToLogin()" type="button">Login</button>
   </div>
 </section>
+
+<app-isloggedin *ngIf="isLoggedIn" (loggedIn)="loggedIn($event)" />
